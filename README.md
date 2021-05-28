@@ -72,3 +72,36 @@ This section lists the minimum functionality of the Sender and Receiver.
 ## Quality Parameters
 
 Setup the quality parameters of your project (duplication, complexity, coverage, warnings) using the GitHub workflow yml files.
+
+## Instructions for the Receiver
+
+1. [IMPORTANT] Run sender.exe without any parameters to generate the default console JSON output for 2 BMS parameters - make sure it is run from the root of the git project directory. This is most likely all you will need. For more information, read on.
+1. Quality parameters set to CCN 4, Duplication same as other assignments.
+1. Core code logic is present in bms_stream_generation_handler. The launch code is present in sender.py
+1. Run sender.exe -h to see various options for control of output stream. The help menu is pasted here for your convenience:
+```
+usage: sender.exe [-h] [-p PARAMS] [-s STREAM_TYPES] [-ss STREAM_SOURCES]
+                  [-o {json,custom}] [-f FREQUENCY]
+
+Runs the sender mechanism for the TCQ project. See -h for moreinformation
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PARAMS, --params PARAMS
+                        Comma separated list of params. Ex: -p param1,param2
+  -s STREAM_TYPES, --stream_types STREAM_TYPES
+                        Comma separated list of stream types in the sameorder
+                        as params. Each stream type can be either random or
+                        csv. Ex: -s random,csv
+  -ss STREAM_SOURCES, --stream_sources STREAM_SOURCES
+                        Comma separated list of stream sources in the
+                        sameorder as params. None for random and specify csv
+                        file path for csv. Ex: -ss None,params.csv
+  -o {json,custom}, --output_format {json,custom}
+                        Output stream format. Choose json or custom. Customer
+                        streamformat is printed as
+                        param1,param1Value;param2,param2Value; and so on. Ex:
+                        -o json
+  -f FREQUENCY, --frequency FREQUENCY
+                        Frequency of the output in per second. Ex: -f 1
+```
