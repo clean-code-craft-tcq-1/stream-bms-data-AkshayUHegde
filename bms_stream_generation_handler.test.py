@@ -53,7 +53,7 @@ class BMSStreamSenderTest(unittest.TestCase):
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_send_loop_custom_formatting_console_output(self, mock_stdout):
         test_param_stream_types = {"temp_in_c": "csv"}
-        test_param_stream_sources = {"temp_in_c": "sources\\battery_temps.csv"}
+        test_param_stream_sources = {"temp_in_c": os.path.join("sources","battery_temps.csv")}
         test_format_type = "custom"
         test_output_stream_type = "console"
         test_frequency = 1
