@@ -5,7 +5,7 @@ from .ParamGenerator import ParamGenerator
 
 class CSVParamGenerator(ParamGenerator):
     def __init__(self):
-        self.source = None
+        self.source = []
         self.count = 0
 
     def set_source(self, source):

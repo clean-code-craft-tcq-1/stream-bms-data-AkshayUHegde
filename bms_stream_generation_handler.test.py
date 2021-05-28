@@ -1,4 +1,5 @@
 import io
+import os
 import time
 import unittest.mock
 import bms_stream_generation_handler
@@ -10,13 +11,13 @@ from Formatters import JSONFormatter, CustomFormatter
 class BMSStreamSenderTest(unittest.TestCase):
     def test_invalid_input(self):
         test_param_generators = {"test1": CSVParamGenerator()}
-        test_param_stream_sources = {"test1": "sources\\invalid_csv.csv"}
+        test_param_stream_sources = {"test1": os.path.join("sources","invalid_csv.csv")}
         test_output = bms_stream_generation_handler.initialize_param_generators(test_param_generators, test_param_stream_sources)
         self.assertEqual(test_output, {'test1': 'Invalid Input'})
 
     def test_no_input(self):
         test_param_generators = {"test2": CSVParamGenerator()}
-        test_param_stream_sources = {"test2": "sources\\no_input.csv"}
+        test_param_stream_sources = {"test2": os.path.join("sources","no_input.csv")}
         bms_stream_generation_handler.initialize_param_generators(test_param_generators, test_param_stream_sources)
         test_output = bms_stream_generation_handler.create_param_map(test_param_generators)
         self.assertEqual(test_output, {"test2": "No Input"})
@@ -37,7 +38,7 @@ class BMSStreamSenderTest(unittest.TestCase):
 
     def test_quit_thread(self):
         test_param_stream_types = {"charge_rate": "random", "temp_in_c": "csv"}
-        test_param_stream_sources = {"charge_rate": None, "temp_in_c": "sources\\battery_temps.csv"}
+        test_param_stream_sources = {"charge_rate": None, "temp_in_c": os.path.join("sources","battery_temps.csv")}
         test_format_type = "json"
         test_output_stream_type = "console"
         quit_event_control, bms_stream_loop, return_value = bms_stream_generation_handler.start(test_param_stream_types,
