@@ -25,11 +25,11 @@ jobs:
           flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
       - name: Run and collect coverage
         run: |
-          coverage run --branch bms_stream_sender.test.py
+          coverage run --branch bms_stream_generation_handler.test.py
           coverage html
       - name: Upload coverage
         uses: actions/upload-artifact@v2
         with:
           name: coverage
           path: ./htmlcov
-          retention-days: 1
+          retention-days: 14
